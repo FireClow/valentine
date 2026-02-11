@@ -28,7 +28,7 @@ export default function Landing({ onNext }) {
             <img
               src={CAT_IMAGE}
               alt="Cute Valentine Cat"
-              className="w-48 h-48 sm:w-56 sm:h-56 object-contain drop-shadow-lg"
+              className="w-48 h-48 sm:w-56 sm:h-56 object-contain drop-shadow-lg rounded-3xl"
             />
             {/* Glowing ring behind cat */}
             <div

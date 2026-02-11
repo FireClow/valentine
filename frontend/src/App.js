@@ -41,6 +41,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen font-nunito">
+      <AmbientMusic />
       <FloatingHearts />
       <FloatingSparkles />
       <div key={pageKey} className="page-enter relative z-10">

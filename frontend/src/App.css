@@ -1,34 +1,253 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* =========================================
+   VALENTINE APP - CSS ANIMATIONS & STYLES
+   All animations use design system tokens
+   ========================================= */
+
+/* ---- Page Transitions ---- */
+.page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.page-enter {
+  animation: pageEnter 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.App-link {
-    color: #61dafb;
+/* ---- Floating Hearts ---- */
+.floating-hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.floating-heart {
+  position: absolute;
+  bottom: -10%;
+  animation: floatUpHeart linear infinite;
+  opacity: 0.15;
+  color: hsl(var(--valentine-rose));
+}
+
+@keyframes floatUpHeart {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.15;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(45deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* ---- Sparkles ---- */
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  color: hsl(var(--valentine-rose-light));
+}
+
+@keyframes sparkleFloat {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* ---- Gradient Backgrounds ---- */
+.bg-valentine-gradient {
+  background: linear-gradient(180deg, 
+    hsl(340 50% 96%) 0%, 
+    hsl(25 55% 96%) 50%, 
+    hsl(340 30% 97%) 100%
+  );
+}
+
+.bg-valentine-warm {
+  background: linear-gradient(180deg, 
+    hsl(25 55% 96%) 0%, 
+    hsl(340 40% 97%) 100%
+  );
+}
+
+.bg-valentine-blush {
+  background: linear-gradient(180deg, 
+    hsl(345 50% 95%) 0%, 
+    hsl(340 30% 97%) 100%
+  );
+}
+
+/* ---- Card Hover Effects ---- */
+.valentine-card-interactive {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.valentine-card-interactive:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ---- Button Glow ---- */
+.btn-glow {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.btn-glow:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-glow:active {
+  transform: scale(0.97);
+}
+
+/* ---- Photo Card Hover ---- */
+.photo-card {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  overflow: hidden;
+}
+
+.photo-card:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.photo-card img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.photo-card:hover img {
+  transform: scale(1.08);
+}
+
+/* ---- Stagger Children Animation ---- */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Envelope Animation ---- */
+.envelope-bounce {
+  animation: envelopeBounce 2s ease-in-out infinite;
+}
+
+@keyframes envelopeBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(0) rotate(2deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+}
+
+/* ---- Music Pulse Animation ---- */
+.music-pulse {
+  animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(350 72% 58% / 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 20px hsl(350 72% 58% / 0);
+  }
+}
+
+/* ---- Letter text styling ---- */
+.letter-text {
+  line-height: 2;
+  font-size: 1.05rem;
+}
+
+/* ---- Noise texture overlay (very subtle) ---- */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- Scrollbar Styling ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--valentine-pink));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--valentine-rose-light));
+}
+
+/* ---- Selection Styling ---- */
+::selection {
+  background: hsl(var(--valentine-pink));
+  color: hsl(var(--valentine-deep));
 }

@@ -7,6 +7,7 @@ import Music from "@/pages/Music";
 import Letter from "@/pages/Letter";
 import FloatingHearts from "@/components/FloatingHearts";
 import FloatingSparkles from "@/components/FloatingSparkles";
+import AmbientMusic from "@/components/AmbientMusic";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("landing");

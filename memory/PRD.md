@@ -22,5 +22,11 @@ A cute, playful, romantic Valentine interactive website inspired by viral Canva/
 - **Typography**: Nunito 400-800 weights
 - **Style**: Rounded cards, soft shadows, romantic gradient backgrounds
 
-## Status: MVP Complete
+## Status: Feature Update Complete
 All 5 pages implemented with full navigation, animations, and responsive design.
+
+### Music Page Upgrade (v2)
+- **Clickable Song List**: 10 songs with HTML5 audio playback, play/pause toggle, active row highlighting, progress bar, EQ visualizer, "Preview" label
+- **Spotify Integration**: Green "Play Full Songs on Spotify" CTA button (opens new tab) + embedded Spotify playlist iframe
+- **Ambient Background Music**: Site-wide soft piano ambient loop, starts on first user click, mute/unmute toggle button (fixed bottom-right)
+- **Audio files**: Generated programmatically — 10 preview clips (~20s each) + 1 ambient track (2min loop), served from /public/music/

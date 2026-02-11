@@ -67,7 +67,7 @@ export default function Choices({ onNavigate }) {
                 onClick={() => onNavigate(option.id)}
                 className={`valentine-card-interactive cursor-pointer border-border/60 bg-gradient-to-b ${option.gradient} overflow-hidden group relative`}
               >
-                <CardContent className="flex flex-col items-center text-center p-8 sm:p-7">
+                <CardContent className="flex flex-col items-center text-center p-6 sm:p-7">
                   {/* Icon Container */}
                   <div className="w-16 h-16 sm:w-14 sm:h-14 rounded-full bg-card/70 backdrop-blur-sm border border-border/50 flex items-center justify-center mb-5 shadow-soft group-hover:shadow-romantic">
                     <IconComp className="w-7 h-7 sm:w-6 sm:h-6 text-primary" style={{ transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />

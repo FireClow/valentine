@@ -267,16 +267,22 @@ export default function Music({ onBack }) {
 
         {/* ── Spotify Embed ── */}
         <div className="mt-6 rounded-xl overflow-hidden shadow-romantic border border-border/30 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-          <iframe
-            title="Spotify Playlist"
-            style={{ borderRadius: "12px" }}
-            src={SPOTIFY_EMBED_URL}
-            width="100%"
-            height="352"
-            frameBorder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
+          <div className="bg-card/60 backdrop-blur-sm">
+            <iframe
+              title="Spotify Playlist"
+              style={{ borderRadius: "12px", border: "none" }}
+              src={SPOTIFY_EMBED_URL}
+              width="100%"
+              height="352"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            />
+          </div>
+          <div className="px-4 py-3 bg-card/40 backdrop-blur-sm text-center">
+            <p className="text-xs text-muted-foreground">
+              Listen to the full playlist directly from Spotify above
+            </p>
+          </div>
         </div>
       </div>
     </div>

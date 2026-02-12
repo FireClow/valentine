@@ -39,14 +39,14 @@ export default function Landing({ onNext }) {
         </div>
 
         {/* Heading */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight mb-4">
-          Will you be my
-          <br />
-          <span className="text-primary">Happy Valentine</span>,
-          <br />
-          my love?
-        </h1>
-
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-[1.1] mb-4">
+  <span className="text-primary block">
+    Happy Valentine
+  </span>
+  <span className="block">
+    my love ❤️
+  </span>
+</h1>
         {/* Heart divider */}
         <div className="flex items-center gap-3 mb-8" aria-hidden="true">
           <div className="w-12 h-px bg-valentine-pink/40" />

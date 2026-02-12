@@ -34,15 +34,16 @@ export const AmbientMusic = () => {
   }, []);
 
   useEffect(() => {
+    const audio = audioRef.current;
     document.addEventListener("click", tryStart, { once: false, passive: true });
     document.addEventListener("touchstart", tryStart, { once: false, passive: true });
 
     return () => {
       document.removeEventListener("click", tryStart);
       document.removeEventListener("touchstart", tryStart);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
+      if (audio) {
+        audio.pause();
+        audio.src = "";
       }
     };
   }, [tryStart]);

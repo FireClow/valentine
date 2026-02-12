@@ -30,12 +30,14 @@ export default function Music({ onBack }) {
 
   /* ---- cleanup on unmount ---- */
   useEffect(() => {
+    const audio = audioRef.current;
+    const interval = progressIntervalRef.current;
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
+      if (audio) {
+        audio.pause();
+        audio.src = "";
       }
-      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+      if (interval) clearInterval(interval);
     };
   }, []);
 

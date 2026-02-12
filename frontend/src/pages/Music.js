@@ -253,7 +253,9 @@ export default function Music({ onBack }) {
                 <Button
                   className="btn-glow w-full rounded-pill py-5 text-sm font-bold gap-2 bg-[#1DB954] hover:bg-[#1aa34a] text-primary-foreground shadow-md"
                 >
-                  <SpotifyIcon className="w-5 h-5" />
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-12.061-1.429-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15.079 10.561 18.72 12.84c.361.21.599.659.301 1.1zm.44-3.4c-3.52-2.159-9.34-2.64-13.561-1.44-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.56-1.3 11.6-.549 15.301 1.661.36.211.599.659.301 1.099-.3.421-.841.599-1.261.299z" />
+                  </svg>
                   Play Full Songs on Spotify
                   <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                 </Button>
@@ -264,5 +266,7 @@ export default function Music({ onBack }) {
             </div>
           </CardContent>
         </Card>
-
-        
+      </div>
+    </div>
+  );
+}

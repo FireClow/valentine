@@ -1,31 +1,14 @@
 import BackButton from "@/components/BackButton";
 import { Heart, Sparkles } from "lucide-react";
 
+// Use local photos from the public/photos folder
 const PHOTOS = [
-  {
-    src: "https://images.unsplash.com/photo-1541385496969-a3edfa5a94ed?w=400&h=500&fit=crop",
-    caption: "That magical first date",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1591969851586-adbbd4accf81?w=400&h=500&fit=crop",
-    caption: "Us being us",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1556229868-7b2d4b56b909?w=400&h=500&fit=crop",
-    caption: "Dancing in the rain",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1769479379111-a01dfb63a9bd?w=400&h=500&fit=crop",
-    caption: "My heart is yours",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1738979120113-821218436aa8?w=400&h=500&fit=crop",
-    caption: "Forever and always",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1599791095997-5cf38bb5ff69?w=400&h=500&fit=crop",
-    caption: "Roses for my love",
-  },
+  { src: "/photos/photo1.jpeg", caption: "That magical first date" },
+  { src: "/photos/photo2.jpeg", caption: "Us being us" },
+  { src: "/photos/photo3.jpeg", caption: "Dancing in the rain" },
+  { src: "/photos/photo4.jpeg", caption: "My heart is yours" },
+  { src: "/photos/photo5.jpeg", caption: "Forever and always" },
+  { src: "/photos/photo6.jpeg", caption: "Roses for my love" },
 ];
 
 export default function Photos({ onBack }) {

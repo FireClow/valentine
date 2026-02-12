@@ -5,20 +5,20 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Heart, Sparkles, Music2, Disc3, Play, Pause, ExternalLink } from "lucide-react";
 
-const SPOTIFY_PLAYLIST_URL = "https://open.spotify.com/playlist/YOUR_PLAYLIST_ID";
-const SPOTIFY_EMBED_URL = "https://open.spotify.com/embed/playlist/37i9dQZF1DX3rxVfibe1L0?utm_source=generator&theme=0";
+const SPOTIFY_PLAYLIST_URL = "https://open.spotify.com/playlist/3w94Dxs7AG1PHPm6qPTREa?si=lTYvkJ2eTlmU4Oz1kfvgZQ&pi=L8EC7BYESpaEX";
+const SPOTIFY_EMBED_URL = "https://open.spotify.com/embed/playlist/3w94Dxs7AG1PHPm6qPTREa?utm_source=generator&theme=0";
 
 const PLAYLIST_SONGS = [
-  { id: 1,  title: "Perfect",                     artist: "Ed Sheeran",              duration: "4:23", previewSrc: "/music/previews/song1.mp3"  },
-  { id: 2,  title: "All of Me",                    artist: "John Legend",              duration: "4:29", previewSrc: "/music/previews/song2.mp3"  },
-  { id: 3,  title: "Love Story",                   artist: "Taylor Swift",             duration: "3:55", previewSrc: "/music/previews/song3.mp3"  },
-  { id: 4,  title: "A Thousand Years",              artist: "Christina Perri",          duration: "4:45", previewSrc: "/music/previews/song4.mp3"  },
-  { id: 5,  title: "Can't Help Falling in Love",   artist: "Elvis Presley",            duration: "3:00", previewSrc: "/music/previews/song5.mp3"  },
-  { id: 6,  title: "Thinking Out Loud",             artist: "Ed Sheeran",              duration: "4:41", previewSrc: "/music/previews/song6.mp3"  },
-  { id: 7,  title: "Just the Way You Are",          artist: "Bruno Mars",              duration: "3:40", previewSrc: "/music/previews/song7.mp3"  },
-  { id: 8,  title: "Unchained Melody",              artist: "The Righteous Brothers",  duration: "3:36", previewSrc: "/music/previews/song8.mp3"  },
-  { id: 9,  title: "Make You Feel My Love",         artist: "Adele",                   duration: "3:32", previewSrc: "/music/previews/song9.mp3"  },
-  { id: 10, title: "At Last",                       artist: "Etta James",              duration: "3:03", previewSrc: "/music/previews/song10.mp3" },
+  { id: 1,  title: "Love Story",                   artist: "Taylor Swift",             duration: "3:55", previewSrc: "/music/previews/song1.mp3"  },
+  { id: 2,  title: "Enchanted",                     artist: "Taylor Swift",             duration: "5:53", previewSrc: "/music/previews/song2.mp3"  },
+  { id: 3,  title: "You Are in Love",               artist: "Taylor Swift",             duration: "3:36", previewSrc: "/music/previews/song3.mp3"  },
+  { id: 4,  title: "Lover",                         artist: "Taylor Swift",             duration: "3:53", previewSrc: "/music/previews/song4.mp3"  },
+  { id: 5,  title: "Daylight",                      artist: "Taylor Swift",             duration: "5:19", previewSrc: "/music/previews/song5.mp3"  },
+  { id: 6,  title: "Perfect",                       artist: "Ed Sheeran",               duration: "4:23", previewSrc: "/music/previews/song6.mp3"  },
+  { id: 7,  title: "Yellow",                        artist: "Coldplay",                 duration: "4:08", previewSrc: "/music/previews/song7.mp3"  },
+  { id: 8,  title: "Best Part",                     artist: "Daniel Caesar",            duration: "2:48", previewSrc: "/music/previews/song8.mp3"  },
+  { id: 9,  title: "All of Me",                     artist: "John Legend",              duration: "4:29", previewSrc: "/music/previews/song9.mp3"  },
+  { id: 10, title: "Until I Found You",             artist: "Stephen Sanchez",          duration: "3:27", previewSrc: "/music/previews/song10.mp3" },
 ];
 
 export default function Music({ onBack }) {

@@ -49,31 +49,19 @@ export default function Letter({ onBack }) {
                   </p>
 
                   <p>
-                    From the very first moment I saw your smile, I knew my world
-                    would never be the same. You walked into my life like sunshine
-                    breaking through the clouds, and every day since then has been
-                    brighter because of you.
+                    From the moment I saw your smile at Gunung Luhur, it felt as if the world paused for a while. In the middle of the cold air and the vast view, your smile became the warmest thing I felt that day. That was when I realized, a feeling was quietly growing, without needing many words.
                   </p>
 
                   <p>
-                    You have this incredible way of making ordinary moments feel
-                    extraordinary. Whether we're laughing over nothing, sharing
-                    comfortable silence, or dancing in the kitchen at midnight — every
-                    second with you feels like a gift I never knew I needed.
+                    Since that day, your smile has always found its way back into my thoughts. In the middle of busy days, in moments of exhaustion, and even in the quiet times that used to feel empty. You come into my life simply, yet bring something so extraordinary.
                   </p>
 
                   <p>
-                    I love the way your eyes light up when you talk about the
-                    things you're passionate about. I love how you always know exactly
-                    what to say to make everything better. I love how safe and warm I
-                    feel when I'm with you.
+                    I love the way your presence alone brings me peace. The way you listen, the way you understand, the way you accept me just as I am. With you, I’ve learned that love doesn’t always have to be loud — sometimes, it’s simply about feeling safe and at ease.
                   </p>
 
                   <p>
-                    You are my favorite hello and my hardest goodbye. You are the
-                    reason I believe in love, in magic, and in beautiful tomorrows.
-                    Thank you for choosing me, for loving me, and for being the most
-                    wonderful person in my world.
+                    With you, I’ve learned that love is not about perfection, but about choosing each other every single day. It’s in the little things you do, the way you care, the way you stay, and the way you make my world feel lighter just by being in it. No matter where life takes us, I know that as long as I have you, I have everything I need.
                   </p>
 
                   <p>

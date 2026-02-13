@@ -57,7 +57,7 @@ export default function Letter({ onBack }) {
                   </p>
 
                   <p>
-                    I love the way your presence alone brings me peace. The way you listen, the way you understand, the way you accept me just as I am. With you, I’ve learned that love doesn’t always have to be loud — sometimes, it’s simply about feeling safe and at ease.
+                    I love the way your presence alone brings me peace. The way you listen, the way you understand, the way you accept me just as I am. With you, I've learned that love doesn't always have to be loud — sometimes, it's simply about feeling safe and at ease.
                   </p>
 
                   <p>

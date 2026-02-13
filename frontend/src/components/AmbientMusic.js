@@ -1,19 +1,34 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Volume2, VolumeX } from "lucide-react";
+import { AmbientMusicContext } from "@/contexts/AmbientMusicContext";
 
-const AMBIENT_SRC = "/music/ambient-piano.mp3";
-const AMBIENT_VOLUME = 0.12; // very low – non-intrusive
+const AMBIENT_SRC = "/music/Can't Help Falling In Love - Elvis Presley _ Piano Cover by Welder Dias.mp3";
+const AMBIENT_VOLUME = 0.08; // very low – non-intrusive
 
 /**
  * Site-wide ambient background music.
  * Starts ONLY after first user interaction (click anywhere) to respect
  * browser autoplay policies. Shows a small mute / unmute pill button.
  */
-export const AmbientMusic = () => {
+const AmbientMusicPlayer = ({ contextValue }) => {
   const audioRef = useRef(null);
   const [muted, setMuted] = useState(false);
   const [started, setStarted] = useState(false);
   const hasInteractedRef = useRef(false);
+
+  /* ── expose pause/resume methods to context ── */
+  useEffect(() => {
+    contextValue.pause = () => {
+      const audio = audioRef.current;
+      if (audio) audio.pause();
+    };
+    contextValue.resume = () => {
+      const audio = audioRef.current;
+      if (audio && started && !muted) {
+        audio.play().catch(() => {});
+      }
+    };
+  }, [contextValue, started, muted]);
 
   /* ── kick off playback on first interaction ── */
   const tryStart = useCallback(() => {
@@ -99,6 +114,35 @@ export const AmbientMusic = () => {
       )}
     </>
   );
+};
+
+/**
+ * Provider component for ambient music and context.
+ */
+export const AmbientMusicProvider = ({ children }) => {
+  const contextValue = {
+    pause: () => {},
+    resume: () => {},
+  };
+
+  return (
+    <AmbientMusicContext.Provider value={contextValue}>
+      <AmbientMusicPlayer contextValue={contextValue} />
+      {children}
+    </AmbientMusicContext.Provider>
+  );
+};
+
+/**
+ * Standalone ambient music component (for compatibility).
+ */
+export const AmbientMusic = () => {
+  const contextValue = {
+    pause: () => {},
+    resume: () => {},
+  };
+
+  return <AmbientMusicPlayer contextValue={contextValue} />;
 };
 
 export default AmbientMusic;

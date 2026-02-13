@@ -7,7 +7,7 @@ import Music from "@/pages/Music";
 import Letter from "@/pages/Letter";
 import FloatingHearts from "@/components/FloatingHearts";
 import FloatingSparkles from "@/components/FloatingSparkles";
-import AmbientMusic from "@/components/AmbientMusic";
+import { AmbientMusicProvider } from "@/components/AmbientMusic";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("landing");
@@ -40,14 +40,15 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen font-nunito">
-      <AmbientMusic />
-      <FloatingHearts />
-      <FloatingSparkles />
-      <div key={pageKey} className="page-enter relative z-10">
-        {renderPage()}
+    <AmbientMusicProvider>
+      <div className="relative min-h-screen font-nunito">
+        <FloatingHearts />
+        <FloatingSparkles />
+        <div key={pageKey} className="page-enter relative z-10">
+          {renderPage()}
+        </div>
       </div>
-    </div>
+    </AmbientMusicProvider>
   );
 }
 

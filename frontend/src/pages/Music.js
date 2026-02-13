@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Heart, Sparkles, Music2, Disc3, Play, Pause, ExternalLink } from "lucide-react";
+import { useAmbientMusic } from "@/contexts/AmbientMusicContext";
 
 const SPOTIFY_PLAYLIST_URL = "https://open.spotify.com/playlist/3w94Dxs7AG1PHPm6qPTREa?si=lTYvkJ2eTlmU4Oz1kfvgZQ&pi=L8EC7BYESpaEX";
 const SPOTIFY_EMBED_URL = "https://open.spotify.com/embed/playlist/3w94Dxs7AG1PHPm6qPTREa?utm_source=generator&theme=0";
@@ -27,6 +28,7 @@ export default function Music({ onBack }) {
   const [progress, setProgress] = useState(0);
   const audioRef = useRef(null);
   const progressIntervalRef = useRef(null);
+  const ambientMusic = useAmbientMusic();
 
   /* ---- cleanup on unmount ---- */
   useEffect(() => {
@@ -38,8 +40,10 @@ export default function Music({ onBack }) {
         audio.src = "";
       }
       if (interval) clearInterval(interval);
+      // resume ambient music when leaving the page
+      ambientMusic.resume?.();
     };
-  }, []);
+  }, [ambientMusic]);
 
   /* ---- progress tracking ---- */
   const startProgressTracking = useCallback(() => {
@@ -70,10 +74,12 @@ export default function Music({ onBack }) {
         audio.pause();
         setIsPlaying(false);
         stopProgressTracking();
+        ambientMusic.resume?.();
       } else {
         audio.play().catch(() => {});
         setIsPlaying(true);
         startProgressTracking();
+        ambientMusic.pause?.();
       }
       return;
     }
@@ -88,17 +94,19 @@ export default function Music({ onBack }) {
       setActiveSongId(song.id);
       setIsPlaying(true);
       startProgressTracking();
+      ambientMusic.pause?.();
     }).catch(() => {
       setActiveSongId(song.id);
     });
-  }, [activeSongId, isPlaying, startProgressTracking, stopProgressTracking]);
+  }, [activeSongId, isPlaying, startProgressTracking, stopProgressTracking, ambientMusic]);
 
   /* ---- when a track ends ---- */
   const handleAudioEnded = useCallback(() => {
     setIsPlaying(false);
     setProgress(0);
     stopProgressTracking();
-  }, [stopProgressTracking]);
+    ambientMusic.resume?.();
+  }, [stopProgressTracking, ambientMusic]);
 
   return (
     <div className="page-wrapper bg-valentine-warm flex flex-col items-center px-4 sm:px-6 py-16 sm:py-20 noise-overlay">

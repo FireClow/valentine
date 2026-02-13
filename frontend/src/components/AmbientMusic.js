@@ -15,6 +15,7 @@ const AmbientMusicPlayer = ({ contextValue }) => {
   const [muted, setMuted] = useState(false);
   const [started, setStarted] = useState(false);
   const hasInteractedRef = useRef(false);
+  const playAttemptedRef = useRef(false);
 
   /* ── expose pause/resume methods to context ── */
   useEffect(() => {
@@ -30,17 +31,19 @@ const AmbientMusicPlayer = ({ contextValue }) => {
     };
   }, [contextValue, started, muted]);
 
-  /* ── try to start on mount ── */
-  const attemptAutoPlay = useCallback(() => {
+  /* ── try to start playback ── */
+  const startPlayback = useCallback(() => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || playAttemptedRef.current) return;
+    playAttemptedRef.current = true;
 
     audio.volume = AMBIENT_VOLUME;
     audio.loop = true;
     audio.play().then(() => {
       setStarted(true);
     }).catch(() => {
-      // autoplay blocked — wait for user interaction
+      // autoplay blocked — reset and wait for user interaction
+      playAttemptedRef.current = false;
     });
   }, []);
 
@@ -62,15 +65,28 @@ const AmbientMusicPlayer = ({ contextValue }) => {
     });
   }, []);
 
+  /* ── initialize on mount and when audio is ready ── */
   useEffect(() => {
-    // Try auto-play on mount
-    attemptAutoPlay();
-
     const audio = audioRef.current;
+    if (!audio) return;
+
+    // Try to play immediately in case it's ready
+    const tryPlayImmediately = () => {
+      startPlayback();
+    };
+
+    // Also try when audio is loaded
+    audio.addEventListener("canplay", tryPlayImmediately, { once: true });
+
+    // Add event listeners for user interaction
     document.addEventListener("click", tryStart, { once: false, passive: true });
     document.addEventListener("touchstart", tryStart, { once: false, passive: true });
 
+    // Try immediately in case it's already in cache
+    startPlayback();
+
     return () => {
+      audio.removeEventListener("canplay", tryPlayImmediately);
       document.removeEventListener("click", tryStart);
       document.removeEventListener("touchstart", tryStart);
       if (audio) {
@@ -78,7 +94,7 @@ const AmbientMusicPlayer = ({ contextValue }) => {
         audio.src = "";
       }
     };
-  }, [attemptAutoPlay, tryStart]);
+  }, [startPlayback, tryStart]);
 
   /* ── mute / unmute ── */
   const toggleMute = useCallback(() => {
@@ -101,8 +117,14 @@ const AmbientMusicPlayer = ({ contextValue }) => {
 
   return (
     <>
-      {/* hidden audio element */}
-      <audio ref={audioRef} src={AMBIENT_SRC} preload="auto" loop />
+      {/* audio element - plays automatically when possible */}
+      <audio
+        ref={audioRef}
+        src={AMBIENT_SRC}
+        preload="auto"
+        loop
+        crossOrigin="anonymous"
+      />
 
       {/* mute / unmute toggle — visible always */}
       <button
@@ -119,6 +141,7 @@ const AmbientMusicPlayer = ({ contextValue }) => {
           shadow-soft
           text-muted-foreground hover:text-primary
           hover:border-valentine-pink hover:shadow-romantic
+          transition-all
         "
       >
         {muted ? (

@@ -7,8 +7,8 @@ const AMBIENT_VOLUME = 0.08; // very low – non-intrusive
 
 /**
  * Site-wide ambient background music.
- * Starts ONLY after first user interaction (click anywhere) to respect
- * browser autoplay policies. Shows a small mute / unmute pill button.
+ * Auto-plays when component mounts. If autoplay is blocked by browser,
+ * starts on first user interaction. Shows mute / unmute pill button.
  */
 const AmbientMusicPlayer = ({ contextValue }) => {
   const audioRef = useRef(null);
@@ -30,6 +30,20 @@ const AmbientMusicPlayer = ({ contextValue }) => {
     };
   }, [contextValue, started, muted]);
 
+  /* ── try to start on mount ── */
+  const attemptAutoPlay = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.volume = AMBIENT_VOLUME;
+    audio.loop = true;
+    audio.play().then(() => {
+      setStarted(true);
+    }).catch(() => {
+      // autoplay blocked — wait for user interaction
+    });
+  }, []);
+
   /* ── kick off playback on first interaction ── */
   const tryStart = useCallback(() => {
     if (hasInteractedRef.current) return;
@@ -49,6 +63,9 @@ const AmbientMusicPlayer = ({ contextValue }) => {
   }, []);
 
   useEffect(() => {
+    // Try auto-play on mount
+    attemptAutoPlay();
+
     const audio = audioRef.current;
     document.addEventListener("click", tryStart, { once: false, passive: true });
     document.addEventListener("touchstart", tryStart, { once: false, passive: true });
@@ -61,7 +78,7 @@ const AmbientMusicPlayer = ({ contextValue }) => {
         audio.src = "";
       }
     };
-  }, [tryStart]);
+  }, [attemptAutoPlay, tryStart]);
 
   /* ── mute / unmute ── */
   const toggleMute = useCallback(() => {
@@ -85,33 +102,31 @@ const AmbientMusicPlayer = ({ contextValue }) => {
   return (
     <>
       {/* hidden audio element */}
-      <audio ref={audioRef} src={AMBIENT_SRC} preload="none" loop />
+      <audio ref={audioRef} src={AMBIENT_SRC} preload="auto" loop />
 
-      {/* mute / unmute toggle — only visible after first interaction */}
-      {started && (
-        <button
-          type="button"
-          onClick={toggleMute}
-          aria-label={muted ? "Unmute background music" : "Mute background music"}
-          className="
-            ambient-toggle
-            fixed bottom-20 right-5 z-50
-            w-10 h-10 rounded-full
-            bg-card/80 backdrop-blur-sm
-            border border-border/60
-            flex items-center justify-center
-            shadow-soft
-            text-muted-foreground hover:text-primary
-            hover:border-valentine-pink hover:shadow-romantic
-          "
-        >
-          {muted ? (
-            <VolumeX className="w-4 h-4" />
-          ) : (
-            <Volume2 className="w-4 h-4" />
-          )}
-        </button>
-      )}
+      {/* mute / unmute toggle — visible always */}
+      <button
+        type="button"
+        onClick={toggleMute}
+        aria-label={muted ? "Unmute background music" : "Mute background music"}
+        className="
+          ambient-toggle
+          fixed bottom-20 right-5 z-50
+          w-10 h-10 rounded-full
+          bg-card/80 backdrop-blur-sm
+          border border-border/60
+          flex items-center justify-center
+          shadow-soft
+          text-muted-foreground hover:text-primary
+          hover:border-valentine-pink hover:shadow-romantic
+        "
+      >
+        {muted ? (
+          <VolumeX className="w-4 h-4" />
+        ) : (
+          <Volume2 className="w-4 h-4" />
+        )}
+      </button>
     </>
   );
 };

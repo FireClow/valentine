@@ -5,7 +5,7 @@ import { Heart, Sparkles } from "lucide-react";
 const PHOTOS = [
   { src: "/photos/photo1.jpeg", caption: "That magical first date" },
   { src: "/photos/photo2.jpeg", caption: "Us being us" },
-  { src: "/photos/photo6.jpeg", caption: "Dancing in the rain" },
+  { src: "/photos/photo6.jpeg", caption: "Even the rain feels gentle with you" },
   { src: "/photos/photo4.jpeg", caption: "My heart is yours" },
   { src: "/photos/photo5.jpeg", caption: "Forever and always" },
   { src: "/photos/photo3.jpeg", caption: "A quiet moment, just us" },
